@@ -8,5 +8,7 @@ namespace PruebaMicroservicios.Data
 
         public DbSet<Cliente> Clientes { get; set; }
 
+        public DbSet<Cuenta> Cuentas { get; set; }
+
     }
 }
