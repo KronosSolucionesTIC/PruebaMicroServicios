@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PruebaMicroservicios.Data;
+﻿using Microservicios_bl;
+using Microservicios_common.Common;
+using Microservicios_dal;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PruebaMicroservicios.Controllers
 {
@@ -8,95 +9,51 @@ namespace PruebaMicroservicios.Controllers
     [ApiController]
     public class CuentaController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ICuentaBl _cuentaBl;
 
-        public CuentaController(DataContext context)
+        public CuentaController(ICuentaBl cuentaBl)
         {
-            _context = context;
+            _cuentaBl = cuentaBl;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cuenta>>> GetCuentas()
+        public IActionResult GetCuentas()
         {
-            try
-            {
-                return await _context.Cuentas.ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
+            _cuentaBl.GetCuentas(response);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cuenta>> GetCuenta(int id)
+        public IActionResult GetCuentaId(int id)
         {
-            var cuenta = await _context.Cuentas.FindAsync(id);
-
-            if (cuenta == null)
-            {
-                return NotFound();
-            }
-
-            return cuenta;
+            ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
+            _cuentaBl.GetCuentaId(id, response);
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Cuenta>> PostInspection(Cuenta cuenta)
+        public IActionResult PostCuenta(CuentaDto cuenta)
         {
-            _context.Cuentas.Add(cuenta);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCuenta", new { id = cuenta.Id }, cuenta);
+            ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
+            _cuentaBl.CreateCuenta(cuenta, response);
+            return Ok(response);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCuenta(int id, Cuenta cuenta)
+        public IActionResult PutCuenta(CuentaDto cuenta)
         {
-            if (id != cuenta.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(cuenta).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CuentaExiste(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        private bool CuentaExiste(int id)
-        {
-            return _context.Cuentas.Any(e => e.Id == id);
+            ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
+            _cuentaBl.UpdateCuenta(cuenta, response);
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCuenta(int id)
+        public IActionResult DeleteCuenta(int id)
         {
-            var cuenta = await _context.Cuentas.FindAsync(id);
-            if (cuenta == null)
-            {
-                return NotFound();
-            }
-
-            _context.Cuentas.Remove(cuenta);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
+            _cuentaBl.DeleteCuenta(id, response);
+            return Ok(response);
         }
     }
 }

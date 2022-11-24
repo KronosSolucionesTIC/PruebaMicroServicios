@@ -1,5 +1,7 @@
+using AutoMapper;
+using Microservicios_bl;
+using Microservicios_dal;
 using Microsoft.EntityFrameworkCore;
-using PruebaMicroservicios.Data;
 
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -8,6 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+#region Inyeccion de dependecias para Interfaces
+builder.Services.AddScoped<IClienteDal, ClienteDal>();
+builder.Services.AddScoped<IClienteBl, ClienteBl>();
+builder.Services.AddScoped<ICuentaDal, CuentaDal>();
+builder.Services.AddScoped<ICuentaBl, CuentaBl>();
+builder.Services.AddScoped<IMovimientoDal, MovimientoDal>();
+builder.Services.AddScoped<IMovimientoBl, MovimientoBl>();
+#endregion
+
+#region Mapper
+var MapperConfig = new MapperConfiguration(mc =>
+{
+
+});
+
+IMapper mapper = MapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+#endregion
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

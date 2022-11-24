@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PruebaMicroservicios.Data;
+﻿using Microservicios_bl;
+using Microservicios_common.Common;
+using Microservicios_dal;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PruebaMicroservicios.Controllers
 {
@@ -8,95 +9,51 @@ namespace PruebaMicroservicios.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IClienteBl _clienteBl; 
 
-        public ClienteController(DataContext context)
+        public ClienteController(IClienteBl clienteBl)
         {
-            _context = context;
+            _clienteBl = clienteBl;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+        public IActionResult GetClientes()
         {
-            try
-            {
-                return await _context.Clientes.ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
+            _clienteBl.GetClientes(response);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(int id)
+        public IActionResult GetClienteId(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-
-            if (cliente == null)
-            {
-                return NotFound();
-            }
-
-            return cliente;
+            ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
+            _clienteBl.GetClienteId(id,response);
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostInspection(Cliente cliente)
+        public IActionResult PostCliente(ClienteDto cliente)
         {
-            _context.Clientes.Add(cliente);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCliente", new { id = cliente.Id }, cliente);
+            ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
+            _clienteBl.CreateCliente(cliente, response);
+            return Ok(response);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int id, Cliente cliente)
+        public IActionResult PutCliente(ClienteDto cliente)
         {
-            if (id != cliente.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(cliente).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClienteExiste(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        private bool ClienteExiste(int id)
-        {
-            return _context.Clientes.Any(e => e.Id == id);
+            ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
+            _clienteBl.UpdateCliente(cliente, response);
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCliente(int id)
+        public IActionResult DeleteCliente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-            if (cliente == null)
-            {
-                return NotFound();
-            }
-
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
+            _clienteBl.DeleteCliente(id, response);
+            return Ok(response);
         }
     }
 }
