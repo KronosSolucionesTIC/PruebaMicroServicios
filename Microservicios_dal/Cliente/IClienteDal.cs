@@ -8,7 +8,7 @@
 
         public List<ClienteDto> CreateCliente(ClienteDto cliente);
 
-        public List<ClienteDto> UpdateCliente(ClienteDto cliente);
+        public List<ClienteDto> UpdateCliente(int id, ClienteDto cliente);
 
         public List<ClienteDto> DeleteCliente(int id);
 

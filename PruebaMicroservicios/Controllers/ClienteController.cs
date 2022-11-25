@@ -41,10 +41,10 @@ namespace PruebaMicroservicios.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCliente(ClienteDto cliente)
+        public IActionResult PutCliente(int id, ClienteDto cliente)
         {
             ResponseQuery<List<ClienteDto>> response = new ResponseQuery<List<ClienteDto>>();
-            _clienteBl.UpdateCliente(cliente, response);
+            _clienteBl.UpdateCliente(id, cliente, response);
             return Ok(response);
         }
 

@@ -59,11 +59,11 @@ namespace Microservicios_bl
             return response;
         }
 
-        public ResponseQuery<List<ClienteDto>> UpdateCliente(ClienteDto cliente, ResponseQuery<List<ClienteDto>> response)
+        public ResponseQuery<List<ClienteDto>> UpdateCliente(int id, ClienteDto cliente, ResponseQuery<List<ClienteDto>> response)
         {
             try
             {
-                response.ObjetoResultado = _clienteDal.UpdateCliente(cliente);
+                response.ObjetoResultado = _clienteDal.UpdateCliente(id, cliente);
                 response.Exitoso = true;
             }
             catch (Exception e)

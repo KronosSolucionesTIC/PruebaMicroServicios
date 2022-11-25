@@ -25,9 +25,9 @@ namespace Microservicios_dal
             _context.Movimientos.Add(newMovimiento);
             _context.SaveChangesAsync();
 
-            var Resultado = GetMovimientoId(movimiento.Id);
-
-            return Resultado;
+            List<MovimientoDto> list = new List<MovimientoDto>();
+            list.Add(movimiento);
+            return list;
         }
 
         public List<MovimientoDto> DeleteMovimiento(int id)

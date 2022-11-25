@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Microservicios_dal
 {
@@ -28,9 +29,9 @@ namespace Microservicios_dal
             _context.Clientes.Add(newCliente);
             _context.SaveChangesAsync();
 
-            var Resultado = GetClienteId(cliente.Id);
-
-            return Resultado;
+            List<ClienteDto> list = new List<ClienteDto>();
+            list.Add(cliente);
+            return list;
         }
 
         public List<ClienteDto> DeleteCliente(int id)
@@ -96,20 +97,17 @@ namespace Microservicios_dal
             return listaDto;
         }
 
-        public List<ClienteDto> UpdateCliente(ClienteDto cliente)
+        public List<ClienteDto> UpdateCliente(int id, ClienteDto cliente)
         {
-            var resultado = _context.Clientes.Find(cliente.Id);
-            ClienteDto clienteDto = new ClienteDto();
-            clienteDto.Id = resultado.Id;
-            clienteDto.EstadoCliente = resultado.EstadoCliente;
-            clienteDto.PassCliente = resultado.PassCliente;
-            clienteDto.DireccionPersona = resultado.DireccionPersona;
-            clienteDto.TelefonoPersona= resultado.TelefonoPersona ;
-            clienteDto.GeneroPersona= resultado.GeneroPersona ;
+            cliente.Id = id;
+            var resultado = _context.Clientes.Find(id);
+            ClienteDto clienteDto = _mapper.Map<ClienteDto>(resultado);
+            var objectDto = _mapper.Map<ClienteDto, Cliente>(cliente, resultado);
+            _context.Entry(resultado).State = EntityState.Modified;
             _context.SaveChanges();
 
             List<ClienteDto> listaDto = new List<ClienteDto>();
-            listaDto.Add(clienteDto);
+            listaDto.Add(cliente);
             return listaDto;
         }
     }

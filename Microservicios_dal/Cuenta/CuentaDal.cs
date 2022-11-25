@@ -25,9 +25,9 @@ namespace Microservicios_dal
             _context.Cuentas.Add(newCuenta);
             _context.SaveChangesAsync();
 
-            var Resultado = GetCuentaId(cuenta.Id);
-
-            return Resultado;
+            List<CuentaDto> list = new List<CuentaDto>();
+            list.Add(cuenta);
+            return list;
         }
 
         public List<CuentaDto> DeleteCuenta(int id)

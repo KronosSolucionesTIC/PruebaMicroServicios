@@ -2,6 +2,7 @@ using AutoMapper;
 using Microservicios_bl;
 using Microservicios_dal;
 using Microsoft.EntityFrameworkCore;
+using PruebaMicroservicios.Automapper;
 
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -23,7 +24,7 @@ builder.Services.AddScoped<IMovimientoBl, MovimientoBl>();
 #region Mapper
 var MapperConfig = new MapperConfiguration(mc =>
 {
-
+    mc.AddProfile(new MappingProfileMasterModule());
 });
 
 IMapper mapper = MapperConfig.CreateMapper();
