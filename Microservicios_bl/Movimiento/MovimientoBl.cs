@@ -15,6 +15,12 @@ namespace Microservicios_bl
         {
             try
             {
+                if (!validarMovimento(movimiento))
+                {
+                    response.Mensaje = "Saldo no disponible";
+                    response.CodigoResultado = null;
+                    response.Exitoso = false;
+                }
                 response.ObjetoResultado = _movimientoDal.CreateMovimiento(movimiento);
                 response.Exitoso = true;
             }
@@ -59,11 +65,11 @@ namespace Microservicios_bl
             return response;
         }
 
-        public ResponseQuery<List<MovimientoDto>> UpdateMovimiento(MovimientoDto movimiento, ResponseQuery<List<MovimientoDto>> response)
+        public ResponseQuery<List<MovimientoDto>> UpdateMovimiento(int id, MovimientoDto movimiento, ResponseQuery<List<MovimientoDto>> response)
         {
             try
             {
-                response.ObjetoResultado = _movimientoDal.UpdateMovimiento(movimiento);
+                response.ObjetoResultado = _movimientoDal.UpdateMovimiento(id, movimiento);
                 response.Exitoso = true;
             }
             catch (Exception e)
@@ -89,6 +95,17 @@ namespace Microservicios_bl
                 response.Exitoso = false;
             }
             return response;
+        }
+
+        public bool validarMovimento(MovimientoDto movimiento)
+        {
+            if(movimiento.TipoMovimiento == "Debito" && movimiento.SaldoMovimiento <= 0)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
         }
     }
 }

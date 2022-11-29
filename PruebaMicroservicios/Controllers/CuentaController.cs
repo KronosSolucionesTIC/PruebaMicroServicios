@@ -41,10 +41,10 @@ namespace PruebaMicroservicios.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCuenta(CuentaDto cuenta)
+        public IActionResult PutCuenta(int id, CuentaDto cuenta)
         {
             ResponseQuery<List<CuentaDto>> response = new ResponseQuery<List<CuentaDto>>();
-            _cuentaBl.UpdateCuenta(cuenta, response);
+            _cuentaBl.UpdateCuenta(id, cuenta, response);
             return Ok(response);
         }
 

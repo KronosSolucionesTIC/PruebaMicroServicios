@@ -17,6 +17,8 @@ namespace Microservicios_dal
 
         [StringLength(5)]
         public string? EstadoCuenta { get; set; }
+        public int ClienteId { get; set; }
+        public Cliente? Cliente { get; set; }
         #endregion
     }
 }

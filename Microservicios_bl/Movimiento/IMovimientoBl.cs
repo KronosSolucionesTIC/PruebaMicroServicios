@@ -12,7 +12,7 @@ namespace Microservicios_bl
 
         public ResponseQuery<List<MovimientoDto>> CreateMovimiento(MovimientoDto movimiento, ResponseQuery<List<MovimientoDto>> response);
         
-        public ResponseQuery<List<MovimientoDto>> UpdateMovimiento(MovimientoDto movimiento, ResponseQuery<List<MovimientoDto>> response);
+        public ResponseQuery<List<MovimientoDto>> UpdateMovimiento(int id, MovimientoDto movimiento, ResponseQuery<List<MovimientoDto>> response);
 
         public ResponseQuery<List<MovimientoDto>> DeleteMovimiento(int id, ResponseQuery<List<MovimientoDto>> response);
     }

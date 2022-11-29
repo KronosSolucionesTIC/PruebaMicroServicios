@@ -41,10 +41,10 @@ namespace PruebaMicroservicios.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutMovimiento(MovimientoDto movimiento)
+        public IActionResult PutMovimiento(int id,MovimientoDto movimiento)
         {
             ResponseQuery<List<MovimientoDto>> response = new ResponseQuery<List<MovimientoDto>>();
-            _movimientoBl.UpdateMovimiento(movimiento, response);
+            _movimientoBl.UpdateMovimiento(id, movimiento, response);
             return Ok(response);
         }
 

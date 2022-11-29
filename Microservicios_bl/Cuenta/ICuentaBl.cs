@@ -12,7 +12,7 @@ namespace Microservicios_bl
 
         public ResponseQuery<List<CuentaDto>> CreateCuenta(CuentaDto cuenta, ResponseQuery<List<CuentaDto>> response);
         
-        public ResponseQuery<List<CuentaDto>> UpdateCuenta(CuentaDto cuenta, ResponseQuery<List<CuentaDto>> response);
+        public ResponseQuery<List<CuentaDto>> UpdateCuenta(int id, CuentaDto cuenta, ResponseQuery<List<CuentaDto>> response);
 
         public ResponseQuery<List<CuentaDto>> DeleteCuenta(int id, ResponseQuery<List<CuentaDto>> response);
     }

@@ -15,6 +15,17 @@ namespace Microservicios_dal
         public int? ValorMovimiento { get; set; }
 
         public int? SaldoMovimiento { get; set; }
+
+        [StringLength(50)]
+        public string? NumeroCuenta { get; set; } = String.Empty;
+
+        [StringLength(50)]
+        public string? TipoCuenta { get; set; } = String.Empty;
+
+        public int? SaldoInicial { get; set; }
+
+        [StringLength(5)]
+        public string? EstadoCuenta { get; set; }
         #endregion
     }
 }

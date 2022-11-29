@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Microservicios_dal
 {
@@ -21,6 +22,7 @@ namespace Microservicios_dal
             newCuenta.TipoCuenta = cuenta.TipoCuenta;
             newCuenta.NumeroCuenta = cuenta.NumeroCuenta;
             newCuenta.SaldoInicial = cuenta.SaldoInicial;
+            newCuenta.ClienteId = cuenta.ClienteId;
 
             _context.Cuentas.Add(newCuenta);
             _context.SaveChangesAsync();
@@ -85,19 +87,17 @@ namespace Microservicios_dal
             return listaDto;
         }
 
-        public List<CuentaDto> UpdateCuenta(CuentaDto cuenta)
+        public List<CuentaDto> UpdateCuenta(int id, CuentaDto cuenta)
         {
-            var resultado = _context.Cuentas.Find(cuenta.Id);
-            CuentaDto cuentaDto = new CuentaDto();
-            cuentaDto.Id = resultado.Id;
-            cuentaDto.EstadoCuenta = resultado.EstadoCuenta;
-            cuentaDto.NumeroCuenta = resultado.NumeroCuenta;
-            cuentaDto.TipoCuenta = resultado.TipoCuenta;
-            cuentaDto.SaldoInicial = resultado.SaldoInicial;
+            cuenta.Id = id;
+            var resultado = _context.Cuentas.Find(id);
+            CuentaDto cuentaDto = _mapper.Map<CuentaDto>(resultado);
+            var objectDto = _mapper.Map<CuentaDto, Cuenta>(cuenta, resultado);
+            _context.Entry(resultado).State = EntityState.Modified;
             _context.SaveChanges();
 
             List<CuentaDto> listaDto = new List<CuentaDto>();
-            listaDto.Add(cuentaDto);
+            listaDto.Add(cuenta);
             return listaDto;
         }
     }

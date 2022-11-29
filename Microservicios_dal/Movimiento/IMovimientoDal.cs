@@ -8,7 +8,7 @@
 
         public List<MovimientoDto> CreateMovimiento(MovimientoDto movimiento);
 
-        public List<MovimientoDto> UpdateMovimiento(MovimientoDto movimiento);
+        public List<MovimientoDto> UpdateMovimiento(int id, MovimientoDto movimiento);
 
         public List<MovimientoDto> DeleteMovimiento(int id);
 

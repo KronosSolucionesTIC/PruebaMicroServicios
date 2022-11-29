@@ -18,6 +18,7 @@ namespace Microservicios_dal
         public List<ClienteDto> CreateCliente(ClienteDto cliente)
         {
             var newCliente = new Cliente();
+            newCliente.NombrePersona = cliente.NombrePersona;
             newCliente.EstadoCliente = cliente.EstadoCliente;
             newCliente.PassCliente = cliente.PassCliente;
             newCliente.EdadPersona = cliente.EdadPersona;

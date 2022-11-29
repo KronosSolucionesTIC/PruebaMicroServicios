@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Microservicios_dal
 {
@@ -20,7 +22,12 @@ namespace Microservicios_dal
             newMovimiento.FechaMovimiento = movimiento.FechaMovimiento;
             newMovimiento.TipoMovimiento = movimiento.TipoMovimiento;
             newMovimiento.ValorMovimiento = movimiento.ValorMovimiento;
-            newMovimiento.SaldoMovimiento = movimiento.SaldoMovimiento;
+            newMovimiento.NumeroCuenta = movimiento.NumeroCuenta;
+            newMovimiento.TipoCuenta = movimiento.TipoCuenta;
+            newMovimiento.EstadoCuenta = movimiento.EstadoCuenta;
+            newMovimiento.SaldoInicial = movimiento.SaldoInicial;
+      
+            newMovimiento.SaldoMovimiento = calcularSaldo(movimiento.TipoMovimiento, movimiento.SaldoInicial, movimiento.ValorMovimiento);
 
             _context.Movimientos.Add(newMovimiento);
             _context.SaveChangesAsync();
@@ -85,20 +92,34 @@ namespace Microservicios_dal
             return listaDto;
         }
 
-        public List<MovimientoDto> UpdateMovimiento(MovimientoDto movimiento)
+        public List<MovimientoDto> UpdateMovimiento(int id,MovimientoDto movimiento)
         {
-            var resultado = _context.Movimientos.Find(movimiento.Id);
-            MovimientoDto movimientoDto = new MovimientoDto();
-            movimientoDto.Id = resultado.Id;
-            movimientoDto.FechaMovimiento = resultado.FechaMovimiento;
-            movimientoDto.TipoMovimiento = resultado.TipoMovimiento;
-            movimientoDto.ValorMovimiento = resultado.ValorMovimiento;
-            movimientoDto.SaldoMovimiento = resultado.SaldoMovimiento;
+            movimiento.Id = id;
+            var resultado = _context.Movimientos.Find(id);
+            MovimientoDto movimientoDto = _mapper.Map<MovimientoDto>(resultado);
+            var objectDto = _mapper.Map<MovimientoDto, Movimiento>(movimiento, resultado);
+            _context.Entry(resultado).State = EntityState.Modified;
             _context.SaveChanges();
 
             List<MovimientoDto> listaDto = new List<MovimientoDto>();
-            listaDto.Add(movimientoDto);
+            listaDto.Add(movimiento);
             return listaDto;
+        }
+
+        public int? calcularSaldo(string tipoMovimiento, int? saldoInicial, int? valorMovimiento)
+        {
+            int? saldoFinal = null;
+            switch (tipoMovimiento)
+            {
+                case "Retiro":
+                    saldoFinal = saldoInicial - valorMovimiento;
+                    return saldoFinal;
+                case "Deposito":
+                    saldoFinal = saldoInicial + valorMovimiento;
+                    return saldoFinal;
+                default:
+                    return saldoFinal;
+            }
         }
     }
 }

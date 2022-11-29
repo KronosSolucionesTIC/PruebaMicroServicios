@@ -8,7 +8,7 @@
 
         public List<CuentaDto> CreateCuenta(CuentaDto cuenta);
 
-        public List<CuentaDto> UpdateCuenta(CuentaDto cuenta);
+        public List<CuentaDto> UpdateCuenta(int id, CuentaDto cuenta);
 
         public List<CuentaDto> DeleteCuenta(int id);
 
