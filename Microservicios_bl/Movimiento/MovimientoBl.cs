@@ -107,5 +107,21 @@ namespace Microservicios_bl
                 return true;
             }
         }
+
+        public ResponseQuery<List<MovimientoDto>> GetReporteFecha(string fecha, string cliente, ResponseQuery<List<MovimientoDto>> response)
+        {
+            try
+            {
+                response.ObjetoResultado = _movimientoDal.GetReporteFecha(fecha, cliente);
+                response.Exitoso = true;
+            }
+            catch (Exception e)
+            {
+                response.Mensaje = e.Message;
+                response.CodigoResultado = null;
+                response.Exitoso = false;
+            }
+            return response;
+        }
     }
 }

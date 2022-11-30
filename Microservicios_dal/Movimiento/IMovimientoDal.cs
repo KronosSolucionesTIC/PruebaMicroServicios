@@ -12,5 +12,7 @@
 
         public List<MovimientoDto> DeleteMovimiento(int id);
 
+        public List<MovimientoDto> GetReporteFecha(string fecha, string cliente);
+
     }
 }

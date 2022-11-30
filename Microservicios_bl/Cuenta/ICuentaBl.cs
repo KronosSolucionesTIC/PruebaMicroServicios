@@ -1,6 +1,5 @@
 ﻿using Microservicios_common.Common;
 using Microservicios_dal;
-using Microsoft.EntityFrameworkCore;
 
 namespace Microservicios_bl
 {

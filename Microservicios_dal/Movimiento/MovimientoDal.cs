@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Microservicios_dal
 {
@@ -120,6 +119,57 @@ namespace Microservicios_dal
                 default:
                     return saldoFinal;
             }
+        }
+
+        public List<MovimientoDto> GetReporteFecha(string fecha, string cliente)
+        {
+            var listaDto = new List<MovimientoDto>();
+            if (string.IsNullOrEmpty(fecha))
+            {
+                return listaDto;
+            }
+            var listaCliente = _context.Clientes.Where(x => x.NombrePersona == cliente).ToList();
+
+            if(listaCliente.Count == 0)
+            {
+                return listaDto;
+            }
+            var clienteId = 0;
+            foreach (var item in listaCliente)
+            {
+                clienteId = item.Id;
+            }
+            var listaCuentas = _context.Cuentas.Where(x => x.ClienteId == clienteId).ToList();
+
+            if (string.IsNullOrEmpty(fecha))
+            {
+                return listaDto;
+            }
+                var fechaQuery = Convert.ToDateTime(fecha);
+                foreach (var item in listaCuentas)
+                {
+                    var resultado = _context.Movimientos.Where(x => x.FechaMovimiento == fechaQuery && x.NumeroCuenta == item.NumeroCuenta).ToList();
+                    if (resultado.Count > 0)
+                    {
+                        foreach (var row in resultado)
+                        {
+                            listaDto.Add(new MovimientoDto
+                            {
+                                Id = row.Id,
+                                FechaMovimiento = row.FechaMovimiento,
+                                NumeroCuenta = row.NumeroCuenta,
+                                TipoCuenta = row.TipoCuenta,
+                                SaldoInicial = row.SaldoInicial,
+                                EstadoCuenta = row.EstadoCuenta,
+                                ValorMovimiento = row.ValorMovimiento,
+                                SaldoMovimiento = row.SaldoMovimiento,
+                                TipoMovimiento = row.TipoMovimiento,
+                                NombreCliente = cliente
+                            });
+                        }
+                    }
+                }
+            return listaDto;
         }
     }
 }

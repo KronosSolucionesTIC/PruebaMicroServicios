@@ -26,6 +26,9 @@ namespace Microservicios_dal
 
         [StringLength(5)]
         public string? EstadoCuenta { get; set; }
+
+        [StringLength(50)]
+        public string? NombreCliente { get; set; } = String.Empty;
         #endregion
     }
 }
