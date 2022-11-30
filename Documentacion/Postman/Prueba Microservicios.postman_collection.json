@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "aa49404e-2a42-4d16-af51-fccdba3179ce",
+		"name": "Prueba Microservicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12527115"
+	},
+	"item": [
+		{
+			"name": "Cliente GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cliente",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente GET  ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cliente/?id=1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cliente",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombrePersona\": \"Diego\",\r\n  \"generoPersona\": \"Masculino\",\r\n  \"edadPersona\": 32,\r\n  \"identificacionPersona\": \"123456\",\r\n  \"direccionPersona\": \"Calle 100\",\r\n  \"telefonoPersona\": \"123321\",\r\n  \"passCliente\": \"123Colombia\",\r\n  \"estadoCliente\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cliente",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombrePersona\": \"Diego\",\r\n  \"generoPersona\": \"Masculino\",\r\n  \"edadPersona\": 32,\r\n  \"identificacionPersona\": \"321321\",\r\n  \"direccionPersona\": \"calle 100\",\r\n  \"telefonoPersona\": \"1231456\",\r\n  \"passCliente\": \"Colombia\",\r\n  \"estadoCliente\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cliente/3",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cliente",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cliente/1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cliente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cuenta",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cuenta/?id=1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cuenta",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"123456\",\r\n  \"tipoCuenta\": \"Debito\",\r\n  \"saldoInicial\": 1000,\r\n  \"estadoCuenta\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cuenta",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"123456789\",\r\n  \"tipoCuenta\": \"Debito\",\r\n  \"saldoInicial\": 500000,\r\n  \"estadoCuenta\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cuenta/3",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cuenta",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Cuenta/1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Cuenta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Movimiento",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Movimiento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Movimiento/?id=1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Movimiento",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaMovimiento\": \"2022-11-29T20:13:10.088Z\",\r\n  \"tipoMovimiento\": \"Retiro\",\r\n  \"valorMovimiento\": 540,\r\n  \"numeroCuenta\": \"496825\",\r\n  \"tipoCuenta\": \"Ahorros\",\r\n  \"saldoInicial\": 0,\r\n  \"estadoCuenta\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Movimiento",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Movimiento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaMovimiento\": \"2022-11-28T22:04:55.840Z\",\r\n  \"tipoMovimiento\": \"Debito\",\r\n  \"valorMovimiento\": 1,\r\n  \"saldoMovimiento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Movimiento/1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Movimiento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Movimiento/1",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Movimiento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reporte GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}:{{puerto}}/api/Reporte/2022-11-29?cliente=Juan%20Osorio",
+					"host": [
+						"{{servidor}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"Reporte",
+						"2022-11-29"
+					],
+					"query": [
+						{
+							"key": "cliente",
+							"value": "Juan%20Osorio"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
