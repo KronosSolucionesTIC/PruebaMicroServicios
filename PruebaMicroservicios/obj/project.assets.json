@@ -4889,9 +4889,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\PruebaMicroservicios\\PruebaMicroservicios.csproj",
-      "projectName": "PruebaMicroservicios",
-      "projectPath": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\PruebaMicroservicios\\PruebaMicroservicios.csproj",
+      "projectUniqueName": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\PruebaMicroservicios\\Microservicios.csproj",
+      "projectName": "Microservicios",
+      "projectPath": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\PruebaMicroservicios\\Microservicios.csproj",
       "packagesPath": "C:\\Users\\diego.marin\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\PruebaMicroservicios\\obj\\",
       "projectStyle": "PackageReference",

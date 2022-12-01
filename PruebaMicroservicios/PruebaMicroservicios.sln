@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaMicroservicios", "PruebaMicroservicios.csproj", "{4D7BCF79-D729-4AC7-B3A8-0F325371A366}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicios", "Microservicios.csproj", "{4D7BCF79-D729-4AC7-B3A8-0F325371A366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservicios_bl", "..\Microservicios_bl\Microservicios_bl.csproj", "{CE16B8E1-A437-4983-9D7B-70CEB5AFE978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicios_bl", "..\Microservicios_bl\Microservicios_bl.csproj", "{CE16B8E1-A437-4983-9D7B-70CEB5AFE978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservicios_dal", "..\Microservicios_dal\Microservicios_dal.csproj", "{BDBF755F-69D3-4D42-9785-7FBCA3C09AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicios_dal", "..\Microservicios_dal\Microservicios_dal.csproj", "{BDBF755F-69D3-4D42-9785-7FBCA3C09AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservicios_common", "..\Microservicios_common\Microservicios_common.csproj", "{2A3B48C8-A35F-439B-BD1A-79A13926B314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicios_common", "..\Microservicios_common\Microservicios_common.csproj", "{2A3B48C8-A35F-439B-BD1A-79A13926B314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservicios_test", "..\PruebaMicroservicios_test\Microservicios_test.csproj", "{65218DBE-CAD2-4355-9D3A-98AD8719763A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2A3B48C8-A35F-439B-BD1A-79A13926B314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3B48C8-A35F-439B-BD1A-79A13926B314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3B48C8-A35F-439B-BD1A-79A13926B314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65218DBE-CAD2-4355-9D3A-98AD8719763A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65218DBE-CAD2-4355-9D3A-98AD8719763A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65218DBE-CAD2-4355-9D3A-98AD8719763A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65218DBE-CAD2-4355-9D3A-98AD8719763A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
