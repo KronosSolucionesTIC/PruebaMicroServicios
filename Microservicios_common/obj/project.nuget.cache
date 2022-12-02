@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f6VsB0rRInHwF3sdCfqCJJfYo7Zo2JxyDbFYtRQsqPl7YDRpOr9msjIcYXhyMfM7HQT0dK3Mw3C0bQz7pTzsXw==",
+  "dgSpecHash": "GYxp0NkgwAb7jgTaYXSVr0BIqd3RUzvDp0Nk1t9zjycjaJSv/l75NBKrpHTcu2eyq11J/zmsiL0AsX68ZTKBng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\diego.marin\\Documents\\PruebaMicroservicios\\Microservicios_common\\Microservicios_common.csproj",
+  "projectFilePath": "C:\\Users\\diego.marin\\Documents\\Microservicios\\Microservicios_common\\Microservicios_common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\diego.marin\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\diego.marin\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
