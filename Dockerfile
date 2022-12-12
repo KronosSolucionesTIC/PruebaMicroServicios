@@ -1,28 +1,25 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+# Copy everything
+COPY ["./Microservicios/Microservicios.csproj", "Microservicios/"]
+COPY ["./Microservicios_dal/Microservicios_dal.csproj", "Microservicios_dal/"]
+COPY ["./Microservicios_common/Microservicios_common.csproj", "Microservicios_common/"]
+COPY ["./Microservicios_bl/Microservicios_bl.csproj", "Microservicios_bl/"]
+
+# Restore as distinct layers
+RUN dotnet restore "Microservicios/Microservicios.csproj"
+
+COPY ./. .
+WORKDIR "/src/Microservicios"
+# Build and publish a release
+RUN dotnet build "Microservicios.csproj" -o /app/build
+RUN dotnet publish "Microservicios.csproj" -o /app/publish
+WORKDIR "/src/Microservicios"
+
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-
-ENV ASPNETCORE_URLS=http://+:8010
-
-EXPOSE 8010
-
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY X.Data/*.*.csproj ./X.Data/
-COPY X.Model/*.*.csproj ./X.Model/
-COPY X.Web/*.*.csproj ./X.Web/
-
-# copy everything else and build app
-COPY X.Data/. ./X.Data/
-COPY X.Model/. ./X.Model/
-COPY X.Web/. ./X.Web/
-
-RUN dotnet restore
-
-WORKDIR /app/X.Web
-RUN dotnet publish -c Release -o out
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-FROM base AS final
-WORKDIR /app
-COPY --from=build /app/X.Web/out ./
-ENTRYPOINT ["dotnet", "X.Web.dll"]
+EXPOSE 8080
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "Microservicios.dll"]

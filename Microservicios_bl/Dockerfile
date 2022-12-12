@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
-COPY . ./
-ADD Microservicios_common/Microservicios_common.csproj ./
+COPY Microservicios_common/* ./
+COPY Microservicios_common/Microservicios_dal/* ./
 
 RUN dotnet restore
 
